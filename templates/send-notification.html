@@ -61,13 +61,49 @@
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-airplay"></i></span>
-                            <span class="nxl-mtext">Dashboard</span><span class="nxl-arrow"><i
+                            <span class="nxl-mtext">DASHBOARD</span><span class="nxl-arrow"><i
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="send-notification.html">Send Notification</a>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification.html">DAILY EXPENSE AND
+                                    INCOME SUMMARY NOTIFICATION (MORNING)</a>
                             </li>
-                            <li class="nxl-item"><a class="nxl-link" href="transactions.html">Transaction Details</a>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification2.html">DAILY EXPENSE AND
+                                    INCOME SUMMARY NOTIFICATION (EVENING)</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification3.html">DAILY EXPENSE AND
+                                    INCOME SUMMARY NOTIFICATION (NIGHT)</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification4.html">WEEKLY TOTAL
+                                    NOTIFICATION</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification5.html">MONTH START GOAL
+                                    SETTING NOTIFICATION</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification6.html">WEEKEND
+                                    NOTIFICATION</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification7.html">FINANCIAL STATS
+                                    NOTIFICATION</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification8.html">OTHER FEATURES &
+                                    VERTICALS</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification9.html">MOTIVATION & QUOTES
+                                    NOTIFICATION</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification10.html">
+                                    OTHERS</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification11.html">
+                                    EXPENSE NOTIFICATION</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification12.html">
+                                    INCOME NOTIFICATION</a>
+                            </li>
+                            <!-- <li class="nxl-item"><a class="nxl-link" href="send-notification.html">Daily Expense and Income summary Notification(Morning)</a>
+                            </li> -->
+                            <li class="nxl-item"><a class="nxl-link" href="transactions.html">TRANSACTION DETAILS</a>
                             </li>
                             <!-- <li class="nxl-item"><a class="nxl-link" href="website-creation-details.html">Website Creation Details</a></li> -->
                         </ul>
@@ -211,11 +247,11 @@
             <div class="page-header">
                 <div class="page-header-left d-flex align-items-center">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Dashboard</h5>
+                        <h5 class="m-b-10">DASHBOARD</h5>
                     </div>
                     <ul class="breadcrumb">
                         <!-- <li class="breadcrumb-item"><a href="index.html">Home</a></li> -->
-                        <li class="breadcrumb-item">FundsAudit Notification Dashboard</li>
+                        <li class="breadcrumb-item">DAILY EXPENSE AND INCOME SUMMARY NOTIFICATION (MORNING)</li>
                     </ul>
                 </div>
 
@@ -273,7 +309,7 @@
                                         </div>
                                         <div class="col-md">
                                             <input type="text" class="form-control" id="notifPart7"
-                                                placeholder="ex: today.">
+                                                placeholder="ex: in the morning!">
                                         </div>
                                     </div>
                                 </div>
@@ -288,7 +324,8 @@
                                     </div>
 
                                     <div class="col-lg-6 mb-4">
-                                        <label class="form-label">Screen <span class="text-danger">*</span></label>
+                                        <label class="form-label">Screen (Onclick the notification will redirect to this
+                                            page)<span class="text-danger">*</span></label>
                                         <select class="form-select" id="screenSelector" data-select2-selector="icon">
                                             <option value="ind_home">Home</option>
                                             <option value="ind_settings">Settings</option>
@@ -304,23 +341,25 @@
 
                                 <div class="row">
                                     <div class="col-lg-6 mb-4">
-                                        <label class="form-label">From <span class="text-danger">*</span></label>
+                                        <label class="form-label">From (Data start duration)<span
+                                                class="text-danger">*</span></label>
                                         <input type="text" class="form-control flatpickr" id="fromDateTime"
-                                            placeholder="Select start date & time">
+                                            placeholder="Select morning start date & time">
                                     </div>
                                     <div class="col-lg-6 mb-4">
-                                        <label class="form-label">To <span class="text-danger">*</span></label>
+                                        <label class="form-label">To (Data end duration)<span
+                                                class="text-danger">*</span></label>
                                         <input type="text" class="form-control flatpickr" id="toDateTime"
-                                            placeholder="Select end date & time">
+                                            placeholder="Select morning end date & time">
                                     </div>
                                 </div>
 
                                 <div class="mt-3">
                                     <label class="form-label">Message Preview:</label>
-                                    <input type="text" id="messagePreview" class="form-control bg-light" readonly
-                                        placeholder="Preview will appear here...">
+                                    <textarea id="messagePreview" class="form-control bg-light" rows="3" readonly
+                                        placeholder="Preview will appear here..."></textarea>
                                     <div class="text-end mt-1">
-                                        <small>Character Count: <span id="charCount">0</span>/100</small>
+                                        <small>Character Count: <span id="charCount">0</span>/200</small>
                                     </div>
                                 </div>
 
@@ -426,9 +465,9 @@
             const charCount = finalMessage.length;
             $('#charCount').text(charCount);
 
-            if (charCount > 100) {
+            if (charCount > 200) {
                 $('#charCount').css('color', 'red');
-                alert("⚠️ Character limit exceeded (100 max)");
+                alert("⚠️ Character limit exceeded (200 max)");
             } else {
                 $('#charCount').css('color', '');
             }
@@ -466,8 +505,8 @@
             const message = `${part1} {user} ${part2} ${part3} ${part4} {expense} ${part5} ${part6} {income} ${part7}`;
             const charCount = message.length;
 
-            if (charCount > 100) {
-                alert("⚠️ Cannot send. Character count exceeds 100.");
+            if (charCount > 200) {
+                alert("⚠️ Cannot send. Character count exceeds 200.");
                 return;
             }
 
