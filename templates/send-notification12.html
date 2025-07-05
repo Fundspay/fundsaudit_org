@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keyword" content="" />
+    <meta name="author" content="" />
+    <!--! The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags !-->
+    <!--! BEGIN: Apps Title-->
+    <title>FundsAudit || Dashboard</title>
+    <!--! END:  Apps Title-->
+    <!--! BEGIN: Favicon-->
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/FundsAuditLogo.png" />
+    <!--! END: Favicon-->
+    <!--! BEGIN: Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="./../assets/css/bootstrap.min.css" />
+    <!--! END: Bootstrap CSS-->
+    <!--! BEGIN: Vendors CSS-->
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/vendors.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/tagify.min.css">
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/tagify-data.min.css">
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/quill.min.css">
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/select2-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/daterangepicker.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!--! END: Vendors CSS-->
+    <!--! BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="./../assets/css/theme.min.css" />
+    <!--! END: Custom CSS-->
+    <!--! HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries !-->
+    <!--! WARNING: Respond.js doesn"t work if you view the page via file: !-->
+    <!--[if lt IE 9]>
+			<script src="https:oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https:oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+    <!--! ================================================================ !-->
+    <!--! [Start] Navigation Manu !-->
+    <!--! ================================================================ !-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <nav class="nxl-navigation">
+        <div class="navbar-wrapper">
+            <div class="m-header">
+                <a href="index.html" class="b-brand">
+                    <img src="/assets/images/fundsaudit2.png" alt="" class="logo logo-lg" />
+                    <img src="/assets/images/FundsAuditLogo.png" alt="" class="logo logo-sm" />
+                </a>
+            </div>
+            <div class="navbar-content">
+                <ul class="nxl-navbar">
+                    <li class="nxl-item nxl-caption">
+                        <label>Navigation</label>
+                    </li>
+                    <li class="nxl-item nxl-hasmenu">
+                        <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-airplay"></i></span>
+                            <span class="nxl-mtext">DASHBOARD</span><span class="nxl-arrow"><i
+                                    class="feather-chevron-right"></i></span>
+                        </a>
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification.html">DAILY EXPENSE AND
+                                    INCOME SUMMARY NOTIFICATION (MORNING)</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification2.html">DAILY EXPENSE AND
+                                    INCOME SUMMARY NOTIFICATION (EVENING)</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification3.html">DAILY EXPENSE AND
+                                    INCOME SUMMARY NOTIFICATION (NIGHT)</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification4.html">WEEKLY TOTAL
+                                    NOTIFICATION</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification5.html">MONTH START GOAL
+                                    SETTING NOTIFICATION</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification6.html">WEEKEND
+                                    NOTIFICATION</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification7.html">FINANCIAL STATS
+                                    NOTIFICATION</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification8.html">OTHER FEATURES &
+                                    VERTICALS</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification9.html">MOTIVATION & QUOTES
+                                    NOTIFICATION</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification10.html">
+                                    OTHERS</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification11.html">
+                                    EXPENSE NOTIFICATION</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification12.html">
+                                    INCOME NOTIFICATION</a>
+                            </li>
+                            <!-- <li class="nxl-item"><a class="nxl-link" href="send-notification.html">Daily Expense and Income summary Notification(Morning)</a>
+                            </li> -->
+                            <li class="nxl-item"><a class="nxl-link" href="transactions.html">TRANSACTION DETAILS</a>
+                            </li>
+                            <!-- <li class="nxl-item"><a class="nxl-link" href="website-creation-details.html">Website Creation Details</a></li> -->
+                        </ul>
+                    </li>
+                    <!-- Admin Page Link (Hidden by Default) -->
+                    <!-- <li class="nxl-item nxl-hasmenu" id="adminPageLink" style="display: none;">
+                        <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-settings"></i></span>
+                            <span class="nxl-mtext">Admin Page</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
+                        </a>
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link" href="admin.html">Dashboard Analysis - Edit</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="business-analysis-edit.html">Business Analysis - Edit</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="analysis-edit.html">Performance Analysis - Edit</a></li>
+                        </ul>
+                    </li> -->
+                </ul>
+
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="feather-briefcase fs-4 text-dark"></i>
+                        <h6 class="mt-4 text-dark fw-bolder">Welcome to FundsRoom</h6>
+                        <p class="fs-11 my-3 text-dark">
+                            FundsRoom is your trusted financial partner, offering seamless solutions for managing
+                            investments, loans, and business funds with ease.
+                        </p>
+                        <!-- <a href="https://www.fundsroom.com/" class="btn btn-primary text-dark w-100" style="margin-bottom: 10%;">Fundsroom</a>
+                        <a href="https://play.google.com/store/apps/details?id=com.fundsroom.fundsaudit&hl=en_IN" class="btn btn-success text-light w-100">Download FundsAudit</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!--! ================================================================ !-->
+    <!--! [End]  Navigation Manu !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! [Start] Header !-->
+    <!--! ================================================================ !-->
+    <header class="nxl-header">
+        <div class="header-wrapper">
+            <!--! [Start] Header Left !-->
+            <div class="header-left d-flex align-items-center gap-4">
+                <!--! [Start] nxl-head-mobile-toggler !-->
+                <a href="javascript:void(0);" class="nxl-head-mobile-toggler" id="mobile-collapse">
+                    <div class="hamburger hamburger--arrowturn">
+                        <div class="hamburger-box">
+                            <div class="hamburger-inner"></div>
+                        </div>
+                    </div>
+                </a>
+                <!--! [Start] nxl-head-mobile-toggler !-->
+                <!--! [Start] nxl-navigation-toggle !-->
+                <div class="nxl-navigation-toggle">
+                    <a href="javascript:void(0);" id="menu-mini-button">
+                        <i class="feather-align-left"></i>
+                    </a>
+                    <a href="javascript:void(0);" id="menu-expend-button" style="display: none">
+                        <i class="feather-arrow-right"></i>
+                    </a>
+                </div>
+                <!--! [End] nxl-navigation-toggle !-->
+                <!--! [Start] nxl-lavel-mega-menu-toggle !-->
+                <!-- <div class="nxl-lavel-mega-menu-toggle d-flex d-lg-none">
+                    <a href="javascript:void(0);" id="nxl-lavel-mega-menu-open">
+                        <i class="feather-align-left"></i>
+                    </a>
+                </div> -->
+                <!--! [End] nxl-lavel-mega-menu-toggle !-->
+                <!--! [Start] nxl-lavel-mega-menu !-->
+                <div class="nxl-drp-link nxl-lavel-mega-menu">
+                    <div class="nxl-lavel-mega-menu-toggle d-flex d-lg-none">
+                        <a href="javascript:void(0)" id="nxl-lavel-mega-menu-hide">
+                            <i class="feather-arrow-left me-2"></i>
+                            <span>Back</span>
+                        </a>
+                    </div>
+
+                    <!--! [End] nxl-lavel-mega-menu-wrapper !-->
+                </div>
+                <!--! [End] nxl-lavel-mega-menu !-->
+            </div>
+            <!--! [End] Header Left !-->
+            <!--! [Start] Header Right !-->
+            <div class="header-right ms-auto">
+                <div class="d-flex align-items-center">
+
+                    <!-- Full Screen Switcher -->
+                    <div class="nxl-h-item d-none d-sm-flex">
+                        <div class="full-screen-switcher">
+                            <a href="javascript:void(0);" class="nxl-head-link me-0"
+                                onclick="$('body').fullScreenHelper('toggle');">
+                                <i class="feather-maximize maximize"></i>
+                                <i class="feather-minimize minimize"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Dark/Light Theme Toggle -->
+                    <div class="nxl-h-item dark-light-theme">
+                        <a href="javascript:void(0);" class="nxl-head-link me-0 dark-button">
+                            <i class="feather-moon"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="nxl-head-link me-0 light-button" style="display: none">
+                            <i class="feather-sun"></i>
+                        </a>
+                    </div>
+
+                    <!-- User Dropdown -->
+                    <div class="dropdown nxl-h-item">
+                        <a href="javascript:void(0);" data-bs-toggle="dropdown" role="button"
+                            data-bs-auto-close="outside">
+                            <div class="avatar-text avatar-lg bg-gray-200">
+                                <i class="feather-user"></i>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end nxl-h-dropdown nxl-user-dropdown">
+                            <div class="dropdown-header">
+                                <section id="user-header">
+                                    <div id="user-section" class="user-dropdown"><i class="feather-user"></i> Fundsroom
+                                        Tech</div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--! [End] Header Right !-->
+        </div>
+    </header>
+    <!--! ================================================================ !-->
+    <!--! [End] Header !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! [Start] Main Content !-->
+    <!--! ================================================================ !-->
+    <main class="nxl-container">
+        <div class="nxl-content">
+            <!-- [ page-header ] start -->
+            <div class="page-header">
+                <div class="page-header-left d-flex align-items-center">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">DASHBOARD</h5>
+                    </div>
+                    <ul class="breadcrumb">
+                        <!-- <li class="breadcrumb-item"><a href="index.html">Home</a></li> -->
+                        <li class="breadcrumb-item">INCOME NOTIFICATION</li>
+                    </ul>
+                </div>
+
+            </div>
+            <!-- [ page-header ] end -->
+            <!-- [ Main Content ] start -->
+            <div class="main-content" style="margin-bottom: 5%;">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <label class="form-label">Notification Message <span class="text-danger">*</span> (
+                                        Note: The fields like {user}! are not editable these fields automatically
+                                        fetches User Data! )</label>
+                                    <div class="row g-2">
+                                        <div class="col-md">
+                                            <input type="text" class="form-control" id="notifPart1"
+                                                placeholder="ex: Good morning">
+                                        </div>
+                                        <div class="col-auto">
+                                            <input type="text" class="form-control text-center bg-light" value="{user}"
+                                                readonly>
+                                        </div>
+                                        <div class="col-md">
+                                            <input type="text" class="form-control" id="notifPart2"
+                                                placeholder="ex: ! , ?">
+                                        </div>
+                                        <!-- <div class="col-md">
+                                            <input type="text" class="form-control" id="notifPart3"
+                                                placeholder="ex: You spent">
+                                        </div> -->
+                                        <div class="col-md">
+                                            <input type="text" class="form-control" id="notifPart5"
+                                                placeholder="ex: you earned">
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-2 mt-2">
+                                        <div class="col-md">
+                                            <input type="text" class="form-control" id="notifPart6"
+                                                placeholder="ex: ₹ , $">
+                                        </div>
+                                        <div class="col-auto">
+                                            <input type="text" class="form-control text-center bg-light"
+                                                value="{income}" readonly>
+                                        </div>
+                                        <!-- <div class="col-md">
+                                            <input type="text" class="form-control" id="notifPart4"
+                                                placeholder="ex: ₹ , $">
+                                        </div>
+                                        <div class="col-auto">
+                                            <input type="text" class="form-control text-center bg-light"
+                                                value="{expense}" readonly>
+                                        </div> -->
+                                        <div class="col-md">
+                                            <input type="text" class="form-control" id="notifPart7"
+                                                placeholder="ex: today.">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 mb-4">
+                                        <label class="form-label">Type <span class="text-danger">*</span></label>
+                                        <select class="form-control" id="notifType" data-select2-selector="icon">
+                                            <option value="static">Static</option>
+                                            <option value="dynamic" selected>Dynamic</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-6 mb-4">
+                                        <label class="form-label">Screen (Onclick the notification will redirect to this
+                                            page)<span class="text-danger">*</span></label>
+                                        <select class="form-select" id="screenSelector" data-select2-selector="icon">
+                                            <option value="ind_home">Home</option>
+                                            <option value="ind_settings">Settings</option>
+                                            <option value="ind_expense">Expense</option>
+                                            <option value="ind_income">Income</option>
+                                            <option value="ind_categorical_analysis">Categorical Analysis</option>
+                                            <option value="ind_periodic_analysis">Periodic Analysis</option>
+                                            <option value="ind_alltransactions">All Transactions</option>
+                                            <option value="ind_subscribe">Subscribe</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 mb-4">
+                                        <label class="form-label">From (Data start duration)<span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control flatpickr" id="fromDateTime"
+                                            placeholder="Select start date & time">
+                                    </div>
+                                    <div class="col-lg-6 mb-4">
+                                        <label class="form-label">To (Data end duration)<span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control flatpickr" id="toDateTime"
+                                            placeholder="Select end date & time">
+                                    </div>
+                                </div>
+
+                                <div class="mt-3">
+                                    <label class="form-label">Message Preview:</label>
+                                    <textarea id="messagePreview" class="form-control bg-light" rows="3" readonly
+                                        placeholder="Preview will appear here..."></textarea>
+                                    <div class="text-end mt-1">
+                                        <small>Character Count: <span id="charCount">0</span>/200</small>
+                                    </div>
+                                </div>
+
+                                <div class="text-end">
+                                    <button class="btn btn-primary" id="sendNotificationBtn">Send Income Notification</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+        <!-- [ Footer ] start -->
+        <footer class="footer">
+            <p class="fs-11 text-muted fw-medium text-uppercase mb-0 copyright">
+                <span>Copyright Fundsroom ©</span>
+                <script>
+                    document.write(new Date().getFullYear());
+                </script>
+            </p>
+            <div class="d-flex align-items-center gap-4">
+                <!-- <a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Help</a>
+					<a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Terms</a>
+					<a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Privacy</a> -->
+            </div>
+        </footer>
+        <!-- [ Footer ] end -->
+    </main>
+    <!--! ================================================================ !-->
+    <!--! [End] Main Content !-->
+    <!--! ================================================================ !-->
+
+    <!--! ================================================================ !-->
+    <!--! Footer Script !-->
+    <!--! ================================================================ !-->
+    <!--! BEGIN: Vendors JS !-->
+    <script src="./../assets/vendors/js/vendors.min.js"></script>
+    <!-- vendors.min.js {always must need to be top} -->
+    <script src="./../assets/vendors/js/daterangepicker.min.js"></script>
+    <script src="./../assets/vendors/js/apexcharts.min.js"></script>
+    <script src="./../assets/vendors/js/circle-progress.min.js"></script>
+    <script src="./../assets/vendors/js/jquery.calendar.min.js"></script>
+    <script src="./../assets/vendors/js/tagify.min.js"></script>
+    <script src="./../assets/vendors/js/tagify-data.min.js"></script>
+    <script src="./../assets/vendors/js/quill.min.js"></script>
+    <script src="./../assets/vendors/js/select2.min.js"></script>
+    <script src="./../assets/vendors/js/select2-active.min.js"></script>
+    <!--! END: Vendors JS !-->
+    <!--! BEGIN: Apps Init  !-->
+    <script src="./../assets/js/common-init.min.js"></script>
+    <!-- <script src="./../assets/js/dashboard-init.min.js"></script> -->
+    <!-- <script src="./../assets/js/reports-project-init.min.js"></script> -->
+    <!-- <script src="./../assets/js/widgets-miscellaneous-init.min.js"></script> -->
+    <!--! END: Apps Init !-->
+    <!--! BEGIN: Theme Customizer  !-->
+    <script src="./../assets/js/theme-customizer-init.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!--! END: Theme Customizer !-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        // 1. Initialize Flatpickr
+        flatpickr(".flatpickr", {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+            altInput: true,
+            altFormat: "m/d/Y h:i K",
+            time_24hr: false
+        });
+
+        // 2. Build ISO string without timezone shift
+        function buildUtcStringFromLocal(datetimeString) {
+            const date = new Date(datetimeString);
+            const year = date.getFullYear();
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            const day = date.getDate().toString().padStart(2, '0');
+            const hours = date.getHours().toString().padStart(2, '0');
+            const minutes = date.getMinutes().toString().padStart(2, '0');
+            return `${year}-${month}-${day}T${hours}:${minutes}:00Z`;
+        }
+
+        // 3. Live message preview + character count
+        function updateMessagePreview() {
+            const part1 = $('#notifPart1').val().trim();
+            const part2 = $('#notifPart2').val().trim();
+            // const part3 = $('#notifPart3')?.val().trim();
+            // const part4 = $('#notifPart4')?.val().trim();
+            const part5 = $('#notifPart5')?.val().trim();
+            const part6 = $('#notifPart6')?.val().trim();
+            const part7 = $('#notifPart7')?.val().trim();
+
+            const finalMessage = `${part1} {user} ${part2} ${part5} ${part6} {income} ${part7}`.trim();
+
+            // Show preview
+            $('#messagePreview').val(finalMessage);
+
+            // Character count
+            const charCount = finalMessage.length;
+            $('#charCount').text(charCount);
+
+            if (charCount > 200) {
+                $('#charCount').css('color', 'red');
+                alert("⚠️ Character limit exceeded (200 max)");
+            } else {
+                $('#charCount').css('color', '');
+            }
+        }
+
+        // 4. Attach to inputs
+        $(document).ready(function () {
+            $('#notifPart1, #notifPart2, #notifPart5, #notifPart6, #notifPart7').on('input', updateMessagePreview);
+            updateMessagePreview();
+        });
+
+        // 5. Send Notification
+        $('#sendNotificationBtn').on('click', function () {
+            const part1 = $('#notifPart1').val().trim();
+            const part2 = $('#notifPart2').val().trim();
+            // const part3 = $('#notifPart3').val().trim();
+            // const part4 = $('#notifPart4').val().trim();
+            const part5 = $('#notifPart5').val().trim();
+            const part6 = $('#notifPart6').val().trim();
+            const part7 = $('#notifPart7').val().trim();
+            const type = $('#notifType').val();
+            const screen = $('#screenSelector').val();
+
+            const fromInput = $('#fromDateTime').val();
+            const toInput = $('#toDateTime').val();
+
+            if (!fromInput || !toInput || !part1 || !part5 || !part7 || !type || !screen) {
+                alert("⚠️ Please fill all fields.");
+                return;
+            }
+
+            const fromTimestamp = buildUtcStringFromLocal(fromInput);
+            const toTimestamp = buildUtcStringFromLocal(toInput);
+
+            const message = `${part1} {user} ${part2} ${part5} ${part6} {income} ${part7}`;
+            const charCount = message.length;
+
+            if (charCount > 200) {
+                alert("⚠️ Cannot send. Character count exceeds 200.");
+                return;
+            }
+
+            const payload = {
+                body: message,
+                type: type,
+                from: fromTimestamp,
+                to: toTimestamp,
+                screen: screen
+            };
+
+            console.log("Sending payload:", payload);
+
+            $.ajax({
+                url: 'https://lc8j8r2xza.execute-api.ap-south-1.amazonaws.com/prod/customnotification/send',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(payload),
+                beforeSend: function () {
+                    Swal.fire({
+                        title: 'Sending Notification...',
+                        html: 'Please wait...',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+                },
+                success: function (response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Notification Sent!',
+                        text: 'Your notification was successfully delivered.'
+                    });
+                    console.log(response);
+                },
+                error: function (xhr, status, error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Sending Failed!',
+                        text: 'There was an error sending the notification. Please try again.'
+                    });
+                    console.error(error);
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
