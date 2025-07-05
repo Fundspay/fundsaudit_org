@@ -20,12 +20,14 @@
     <!--! END: Bootstrap CSS-->
     <!--! BEGIN: Vendors CSS-->
     <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/vendors.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/tagify.min.css">
     <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/tagify-data.min.css">
     <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/quill.min.css">
     <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/select2.min.css">
     <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/select2-theme.min.css">
     <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/daterangepicker.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <!--! END: Vendors CSS-->
     <!--! BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="./../assets/css/theme.min.css" />
@@ -59,11 +61,14 @@
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-airplay"></i></span>
-                            <span class="nxl-mtext">Dashboard</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
+                            <span class="nxl-mtext">Dashboard</span><span class="nxl-arrow"><i
+                                    class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="send-notification.html">Send Notification</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="transactions.html">Transaction Details</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="send-notification.html">Send Notification</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="transactions.html">Transaction Details</a>
+                            </li>
                             <!-- <li class="nxl-item"><a class="nxl-link" href="website-creation-details.html">Website Creation Details</a></li> -->
                         </ul>
                     </li>
@@ -86,7 +91,8 @@
                         <i class="feather-briefcase fs-4 text-dark"></i>
                         <h6 class="mt-4 text-dark fw-bolder">Welcome to FundsRoom</h6>
                         <p class="fs-11 my-3 text-dark">
-                            FundsRoom is your trusted financial partner, offering seamless solutions for managing investments, loans, and business funds with ease.
+                            FundsRoom is your trusted financial partner, offering seamless solutions for managing
+                            investments, loans, and business funds with ease.
                         </p>
                         <!-- <a href="https://www.fundsroom.com/" class="btn btn-primary text-dark w-100" style="margin-bottom: 10%;">Fundsroom</a>
                         <a href="https://play.google.com/store/apps/details?id=com.fundsroom.fundsaudit&hl=en_IN" class="btn btn-success text-light w-100">Download FundsAudit</a> -->
@@ -153,7 +159,8 @@
                     <!-- Full Screen Switcher -->
                     <div class="nxl-h-item d-none d-sm-flex">
                         <div class="full-screen-switcher">
-                            <a href="javascript:void(0);" class="nxl-head-link me-0" onclick="$('body').fullScreenHelper('toggle');">
+                            <a href="javascript:void(0);" class="nxl-head-link me-0"
+                                onclick="$('body').fullScreenHelper('toggle');">
                                 <i class="feather-maximize maximize"></i>
                                 <i class="feather-minimize minimize"></i>
                             </a>
@@ -172,7 +179,8 @@
 
                     <!-- User Dropdown -->
                     <div class="dropdown nxl-h-item">
-                        <a href="javascript:void(0);" data-bs-toggle="dropdown" role="button" data-bs-auto-close="outside">
+                        <a href="javascript:void(0);" data-bs-toggle="dropdown" role="button"
+                            data-bs-auto-close="outside">
                             <div class="avatar-text avatar-lg bg-gray-200">
                                 <i class="feather-user"></i>
                             </div>
@@ -180,7 +188,8 @@
                         <div class="dropdown-menu dropdown-menu-end nxl-h-dropdown nxl-user-dropdown">
                             <div class="dropdown-header">
                                 <section id="user-header">
-                                    <div id="user-section" class="user-dropdown"><i class="feather-user"></i> Fundsroom Tech</div>
+                                    <div id="user-section" class="user-dropdown"><i class="feather-user"></i> Fundsroom
+                                        Tech</div>
                                 </section>
                             </div>
                         </div>
@@ -209,7 +218,7 @@
                         <li class="breadcrumb-item">FundsAudit Notification Dashboard</li>
                     </ul>
                 </div>
-                
+
             </div>
             <!-- [ page-header ] end -->
             <!-- [ Main Content ] start -->
@@ -219,164 +228,109 @@
                         <div class="card stretch stretch-full">
                             <div class="card-body">
                                 <div class="mb-4">
-                                    <label class="form-label">Notification<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" placeholder="Subject">
+                                    <label class="form-label">Notification Message <span class="text-danger">*</span> (
+                                        Note: The fields like {user}! are not editable these fields automatically
+                                        fetches User Data! )</label>
+                                    <div class="row g-2">
+                                        <div class="col-md">
+                                            <input type="text" class="form-control" id="notifPart1"
+                                                placeholder="ex: Good morning">
+                                        </div>
+                                        <div class="col-auto">
+                                            <input type="text" class="form-control text-center bg-light" value="{user}"
+                                                readonly>
+                                        </div>
+                                        <div class="col-md">
+                                            <input type="text" class="form-control" id="notifPart2"
+                                                placeholder="ex: ! , ?">
+                                        </div>
+                                        <div class="col-md">
+                                            <input type="text" class="form-control" id="notifPart3"
+                                                placeholder="ex: You spent">
+                                        </div>
+                                        <div class="col-md">
+                                            <input type="text" class="form-control" id="notifPart4"
+                                                placeholder="ex: ₹ , $">
+                                        </div>
+                                        <div class="col-auto">
+                                            <input type="text" class="form-control text-center bg-light"
+                                                value="{expense}" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-2 mt-2">
+                                        <div class="col-md">
+                                            <input type="text" class="form-control" id="notifPart5"
+                                                placeholder="ex: and earned">
+                                        </div>
+                                        <div class="col-md">
+                                            <input type="text" class="form-control" id="notifPart6"
+                                                placeholder="ex: ₹ , $">
+                                        </div>
+                                        <div class="col-auto">
+                                            <input type="text" class="form-control text-center bg-light"
+                                                value="{income}" readonly>
+                                        </div>
+                                        <div class="col-md">
+                                            <input type="text" class="form-control" id="notifPart7"
+                                                placeholder="ex: today.">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="mb-4">
-                                    <label class="form-label">Users <span class="text-danger">*</span></label>
-                                    <select class="form-control" data-select2-selector="icon">
-                                        <option value="lead" data-icon="feather-at-sign">User</option>
-                                        <option value="coustomer" data-icon="feather-users">Coustomer</option>
-                                    </select>
+
+                                <div class="row">
+                                    <div class="col-lg-6 mb-4">
+                                        <label class="form-label">Type <span class="text-danger">*</span></label>
+                                        <select class="form-control" id="notifType" data-select2-selector="icon">
+                                            <option value="static">Static</option>
+                                            <option value="dynamic" selected>Dynamic</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-6 mb-4">
+                                        <label class="form-label">Screen <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="screenSelector" data-select2-selector="icon">
+                                            <option value="ind_home">Home</option>
+                                            <option value="ind_settings">Settings</option>
+                                            <option value="ind_expense">Expense</option>
+                                            <option value="ind_income">Income</option>
+                                            <option value="ind_categorical_analysis">Categorical Analysis</option>
+                                            <option value="ind_periodic_analysis">Periodic Analysis</option>
+                                            <option value="ind_alltransactions">All Transactions</option>
+                                            <option value="ind_subscribe">Subscribe</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="mb-4">
-                                    <label class="form-label">Select <span class="text-danger">*</span></label>
-                                    <select class="form-select" data-select2-selector="user">
-                                        <option value="1" data-user="1">Alexandra Della - Website design and development</option>
-                                        <option value="2" data-user="2">Curtis Green - User experience (UX) and user interface (UI) design</option>
-                                        <option value="3" data-user="3">Marianne Audrey - Responsive and mobile design</option>
-                                        <option value="4" data-user="4">Holland Scott - E-commerce website design and development</option>
-                                        <option value="5" data-user="5">Olive Delarosa - Custom graphics and icon design</option>
-                                    </select>
-                                </div>
-                                <!-- <div class="mb-4">
-                                    <label class="form-label">Discount </label>
-                                    <select class="form-select" data-select2-selector="default">
-                                        <option value="">No Discount</option>
-                                        <option value="">Before Tax</option>
-                                        <option value="">After Tax</option>
-                                    </select>
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label">Visibility:</label>
-                                    <select class="form-select form-control" data-select2-selector="visibility">
-                                        <option value="public" data-icon="feather-globe">Public</option>
-                                        <option value="private" data-icon="feather-lock">Private</option>
-                                        <option value="private" data-icon="feather-user">Personal</option>
-                                        <option value="customs" data-icon="feather-settings">Customs</option>
-                                    </select>
-                                </div> -->
+
                                 <div class="row">
                                     <div class="col-lg-6 mb-4">
                                         <label class="form-label">From <span class="text-danger">*</span></label>
-                                        <input class="form-control" id="startDate" placeholder=" ">
+                                        <input type="text" class="form-control flatpickr" id="fromDateTime"
+                                            placeholder="Select start date & time">
                                     </div>
                                     <div class="col-lg-6 mb-4">
                                         <label class="form-label">To <span class="text-danger">*</span></label>
-                                        <input class="form-control" id="dueDate" placeholder="">
+                                        <input type="text" class="form-control flatpickr" id="toDateTime"
+                                            placeholder="Select end date & time">
                                     </div>
                                 </div>
-                                <!-- <div class="mb-4">
-                                    <label class="form-label">Tags:</label>
-                                    <select class="form-select form-control" data-select2-selector="tag" multiple>
-                                        <option value="primary" data-bg="bg-primary">Team</option>
-                                        <option value="teal" data-bg="bg-teal">Primary</option>
-                                        <option value="success" data-bg="bg-success">Updates</option>
-                                        <option value="warning" data-bg="bg-warning">Personal</option>
-                                        <option value="danger" data-bg="bg-danger">Promotions</option>
-                                        <option value="indigo" data-bg="bg-indigo">Customs</option>
-                                    </select>
+
+                                <div class="mt-3">
+                                    <label class="form-label">Message Preview:</label>
+                                    <input type="text" id="messagePreview" class="form-control bg-light" readonly
+                                        placeholder="Preview will appear here...">
+                                    <div class="text-end mt-1">
+                                        <small>Character Count: <span id="charCount">0</span>/100</small>
+                                    </div>
                                 </div>
-                                <div class="mb-0">
-                                    <label class="form-label">Assignee:</label>
-                                    <select class="form-select form-control" data-select2-selector="user" multiple>
-                                        <option value="alex@outlook.com" data-user="1">alex@outlook.com</option>
-                                        <option value="john.deo@outlook.com" data-user="2">john.deo@outlook.com</option>
-                                        <option value="green.cutte@outlook.com" data-user="3">green.cutte@outlook.com</option>
-                                        <option value="nancy.elliot@outlook.com" data-user="4">nancy.elliot@outlook.com</option>
-                                        <option value="mar.audrey@gmail.com" data-user="5">mar.audrey@gmail.com</option>
-                                        <option value="erna.serpa@outlook.com" data-user="6">erna.serpa@outlook.com</option>
-                                        <option value="green.cutte@outlook.com" data-user="7">green.cutte@outlook.com</option>
-                                        <option value="nancy.elliot@outlook.com" data-user="8">nancy.elliot@outlook.com</option>
-                                        <option value="mar.audrey@gmail.com" data-user="9">mar.audrey@gmail.com</option>
-                                        <option value="erna.serpa@outlook.com" data-user="10">erna.serpa@outlook.com</option>
-                                        <option value="mar.audrey@gmail.com" data-user="11">mar.audrey@gmail.com</option>
-                                        <option value="erna.serpa@outlook.com" data-user="12">erna.serpa@outlook.com</option>
-                                    </select>
-                                </div> -->
+
+                                <div class="text-end">
+                                    <button class="btn btn-primary" id="sendNotificationBtn">Send Notification</button>
+                                </div>
+
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-12">
-                        <div class="card stretch stretch-full">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-8">
-                                        <div class="mb-4">
-                                            <h5 class="fw-bold">Add Items:</h5>
-                                            <span class="fs-12 text-muted">Add items to proposal</span>
-                                        </div>
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered overflow-hidden" id="tab_logic">
-                                                <thead>
-                                                    <tr class="single-item">
-                                                        <th class="text-center">#</th>
-                                                        <th class="text-center wd-450">Product</th>
-                                                        <th class="text-center wd-150">Qty</th>
-                                                        <th class="text-center wd-150">Price</th>
-                                                        <th class="text-center wd-150">Total</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr id="addr0">
-                                                        <td>1</td>
-                                                        <td><input type="text" name="product[]" placeholder="Product Name" class="form-control"></td>
-                                                        <td><input type="number" name="qty[]" placeholder="Qty" class="form-control qty" step="1" min="1"></td>
-                                                        <td><input type="number" name="price[]" placeholder="Unit Price" class="form-control price" step="1.00"></td>
-                                                        <td><input type="number" name="total[]" placeholder="0.00" class="form-control total" readonly=""></td>
-                                                    </tr>
-                                                    <tr id="addr1">
-                                                        <td>3</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="d-flex justify-content-end gap-2 mt-3">
-                                            <button id="delete_row" class="btn btn-md bg-soft-danger text-danger">Delete</button>
-                                            <button id="add_row" class="btn btn-md btn-primary">Add Items</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="mb-4">
-                                            <h5 class="fw-bold">Grand Total:</h5>
-                                            <span class="fs-12 text-muted">Grand total proposal</span>
-                                        </div>
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered" id="tab_logic_total">
-                                                <tbody>
-                                                    <tr class="single-item">
-                                                        <th class="fs-10 text-dark text-uppercase">Sub Total</th>
-                                                        <td class="w-25"><input type="number" name="sub_total" placeholder="0.00" class="form-control border-0 bg-transparent p-0" id="sub_total" readonly=""></td>
-                                                    </tr>
-                                                    <tr class="single-item">
-                                                        <th class="fs-10 text-dark text-uppercase">Tax</th>
-                                                        <td class="w-25">
-                                                            <div class="input-group mb-2 mb-sm-0">
-                                                                <input type="number" class="form-control border-0 bg-transparent p-0" id="tax" placeholder="0">
-                                                                <div class="input-group-addon">%</div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="single-item">
-                                                        <th class="fs-10 text-dark text-uppercase">Tax Amount</th>
-                                                        <td class="w-25"><input type="number" name="tax_amount" id="tax_amount" placeholder="0.00" class="form-control border-0 bg-transparent p-0" readonly=""></td>
-                                                    </tr>
-                                                    <tr class="single-item">
-                                                        <th class="fs-10 text-dark text-uppercase bg-gray-100">Grand Total</th>
-                                                        <td class="bg-gray-100 w-25"><input type="number" name="total_amount" id="total_amount" placeholder="0.00" class="form-control border-0 bg-transparent p-0 fw-700 text-dark" readonly=""></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
             <!-- [ Main Content ] end -->
@@ -400,7 +354,7 @@
     <!--! ================================================================ !-->
     <!--! [End] Main Content !-->
     <!--! ================================================================ !-->
-   
+
     <!--! ================================================================ !-->
     <!--! Footer Script !-->
     <!--! ================================================================ !-->
@@ -425,7 +379,142 @@
     <!--! END: Apps Init !-->
     <!--! BEGIN: Theme Customizer  !-->
     <script src="./../assets/js/theme-customizer-init.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!--! END: Theme Customizer !-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        // 1. Initialize Flatpickr
+        flatpickr(".flatpickr", {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+            altInput: true,
+            altFormat: "m/d/Y h:i K",
+            time_24hr: false
+        });
+
+        // 2. Build ISO string without timezone shift
+        function buildUtcStringFromLocal(datetimeString) {
+            const date = new Date(datetimeString);
+            const year = date.getFullYear();
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            const day = date.getDate().toString().padStart(2, '0');
+            const hours = date.getHours().toString().padStart(2, '0');
+            const minutes = date.getMinutes().toString().padStart(2, '0');
+            return `${year}-${month}-${day}T${hours}:${minutes}:00Z`;
+        }
+
+        // 3. Live message preview + character count
+        function updateMessagePreview() {
+            const part1 = $('#notifPart1').val().trim();
+            const part2 = $('#notifPart2').val().trim();
+            const part3 = $('#notifPart3')?.val().trim();
+            const part4 = $('#notifPart4')?.val().trim();
+            const part5 = $('#notifPart5')?.val().trim();
+            const part6 = $('#notifPart6')?.val().trim();
+            const part7 = $('#notifPart7')?.val().trim();
+
+            const finalMessage = `${part1} {user} ${part2} ${part3} ${part4} {expense} ${part5} ${part6} {income} ${part7}`.trim();
+
+            // Show preview
+            $('#messagePreview').val(finalMessage);
+
+            // Character count
+            const charCount = finalMessage.length;
+            $('#charCount').text(charCount);
+
+            if (charCount > 100) {
+                $('#charCount').css('color', 'red');
+                alert("⚠️ Character limit exceeded (100 max)");
+            } else {
+                $('#charCount').css('color', '');
+            }
+        }
+
+        // 4. Attach to inputs
+        $(document).ready(function () {
+            $('#notifPart1, #notifPart2, #notifPart3, #notifPart4, #notifPart5, #notifPart6, #notifPart7').on('input', updateMessagePreview);
+            updateMessagePreview();
+        });
+
+        // 5. Send Notification
+        $('#sendNotificationBtn').on('click', function () {
+            const part1 = $('#notifPart1').val().trim();
+            const part2 = $('#notifPart2').val().trim();
+            const part3 = $('#notifPart3').val().trim();
+            const part4 = $('#notifPart4').val().trim();
+            const part5 = $('#notifPart5').val().trim();
+            const part6 = $('#notifPart6').val().trim();
+            const part7 = $('#notifPart7').val().trim();
+            const type = $('#notifType').val();
+            const screen = $('#screenSelector').val();
+
+            const fromInput = $('#fromDateTime').val();
+            const toInput = $('#toDateTime').val();
+
+            if (!fromInput || !toInput || !part1 || !part5 || !part3 || !part7 || !type || !screen) {
+                alert("⚠️ Please fill all fields.");
+                return;
+            }
+
+            const fromTimestamp = buildUtcStringFromLocal(fromInput);
+            const toTimestamp = buildUtcStringFromLocal(toInput);
+
+            const message = `${part1} {user} ${part2} ${part3} ${part4} {expense} ${part5} ${part6} {income} ${part7}`;
+            const charCount = message.length;
+
+            if (charCount > 100) {
+                alert("⚠️ Cannot send. Character count exceeds 100.");
+                return;
+            }
+
+            const payload = {
+                body: message,
+                type: type,
+                from: fromTimestamp,
+                to: toTimestamp,
+                screen: screen
+            };
+
+            console.log("Sending payload:", payload);
+
+            $.ajax({
+                url: 'https://lc8j8r2xza.execute-api.ap-south-1.amazonaws.com/prod/customnotification/send',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(payload),
+                beforeSend: function () {
+                    Swal.fire({
+                        title: 'Sending Notification...',
+                        html: 'Please wait...',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+                },
+                success: function (response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Notification Sent!',
+                        text: 'Your notification was successfully delivered.'
+                    });
+                    console.log(response);
+                },
+                error: function (xhr, status, error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Sending Failed!',
+                        text: 'There was an error sending the notification. Please try again.'
+                    });
+                    console.error(error);
+                }
+            });
+        });
+    </script>
 
 </body>
 
