@@ -182,41 +182,6 @@
         });
     </script>
 
-    <script>
-			// Disable right-click
-			document.addEventListener("contextmenu", function(e) {
-				e.preventDefault();
-			});
-
-			let devAccessGranted = false;
-
-			document.addEventListener("keydown", function(e) {
-				const isCtrl = e.ctrlKey;
-				const isShift = e.shiftKey;
-				const isAlt = e.altKey;
-				const key = e.key.toLowerCase();
-
-				// Allow Ctrl+Alt+Shift+I
-				if (isCtrl && isAlt && isShift && key === "i") {
-				devAccessGranted = true;
-				alert("Developer access granted. Now you can open Devtools");
-				return;
-				}
-
-				if (
-				!devAccessGranted &&
-				(
-					e.keyCode === 123 || // F12
-					(isCtrl && isShift && (key === "i" || key === "j")) || // Ctrl+Shift+I/J
-					(isCtrl && key === "u") 
-				)
-				) {
-				e.preventDefault();
-				// alert("Access denied.");
-				}
-			});
-		</script>
-
 </body>
 
 </html>
