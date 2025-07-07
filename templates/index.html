@@ -117,30 +117,31 @@
     <!--! END: Theme Customizer !-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <!-- SHA-256 library for HTTP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/3.2.0/sha256.min.js"></script>
+
     <script>
-        async function hash(input) {
-            const encoder = new TextEncoder();
-            const data = encoder.encode(input);
-            const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        function hash(input) {
+            const shaObj = new jsSHA("SHA-256", "TEXT");
+            shaObj.update(input);
+            return shaObj.getHash("HEX");
         }
 
         const correctEmailHash = "7b62af32db5e8a407f22ebe42c67b215cee09caf1cc5361d1474721369283123";
         const correctPasswordHash = "04c19a3214e578663ecff2cadd780410e5c56b23cc761985b1b138b1859bb573";
 
-        document.getElementById("loginForm").addEventListener("submit", async function (e) {
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
             e.preventDefault();
 
             const enteredEmail = document.getElementById("email").value.trim().toLowerCase();
             const enteredPassword = document.getElementById("password").value;
 
-            const emailHash = await hash(enteredEmail);
-            const passwordHash = await hash(enteredPassword);
+            const emailHash = hash(enteredEmail);
+            const passwordHash = hash(enteredPassword);
 
             if (emailHash === correctEmailHash && passwordHash === correctPasswordHash) {
                 sessionStorage.setItem("loggedIn", "true");
-            
+
                 Swal.fire({
                     title: 'Logging you in…',
                     allowOutsideClick: false,
