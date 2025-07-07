@@ -189,11 +189,15 @@
 
         let devAccessGranted = false;
 
+        const allowedKeys = ["enter", "tab", "escape", "backspace", "arrowup", "arrowdown", "arrowleft", "arrowright"];
+
         window.addEventListener("keydown", function (e) {
             const isCtrl = e.ctrlKey;
             const isShift = e.shiftKey;
             const isAlt = e.altKey;
             const key = e.key.toLowerCase();
+
+            if (allowedKeys.includes(key)) return;
 
             if (isCtrl && isAlt && isShift && key === "i") {
                 devAccessGranted = true;
