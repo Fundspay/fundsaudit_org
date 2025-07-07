@@ -379,38 +379,63 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-    $(document).ready(function () {
-        const rowsPerPage = 25;
-        let currentPage = 1;
-        let tableData = [];
+        // Force reload on back button navigation (important for session checks)
+        window.addEventListener('pageshow', function (event) {
+            if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+                window.location.reload();
+            }
+        });
 
-        function fetchData() {
-            $.ajax({
-                url: "https://lc8j8r2xza.execute-api.ap-south-1.amazonaws.com/prod/transactions/getAll/all?from=2025-07-01T00:00:00Z&to=2025-07-04T23:59:59Z",
-                method: "GET",
-                success: function (response) {
-                    tableData = response.map((item, index) => ({
-                        sno: index + 1,
-                        ...item
-                    }));
-                    renderTable();
-                    renderPagination();
-                },
-                error: function (err) {
-                    console.error("Error fetching data:", err);
-                }
-            });
-        }
+        window.onload = function () {
+            const loggedIn = sessionStorage.getItem("loggedIn");
 
-        function renderTable() {
-            const tbody = $("#leadsTable tbody");
-            tbody.empty();
-            const start = (currentPage - 1) * rowsPerPage;
-            const end = start + rowsPerPage;
-            const rows = tableData.slice(start, end);
+            if (loggedIn !== "true") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Access Denied',
+                    text: 'You must be logged in to access this page.',
+                    confirmButtonText: 'Login',
+                    allowOutsideClick: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "index.html";
+                    }
+                });
+            }
+        };
 
-            rows.forEach((row) => {
-                const tr = `<tr>
+        $(document).ready(function () {
+            const rowsPerPage = 25;
+            let currentPage = 1;
+            let tableData = [];
+
+            function fetchData() {
+                $.ajax({
+                    url: "https://lc8j8r2xza.execute-api.ap-south-1.amazonaws.com/prod/transactions/getAll/all?from=2025-07-01T00:00:00Z&to=2025-07-04T23:59:59Z",
+                    method: "GET",
+                    success: function (response) {
+                        tableData = response.map((item, index) => ({
+                            sno: index + 1,
+                            ...item
+                        }));
+                        renderTable();
+                        renderPagination();
+                    },
+                    error: function (err) {
+                        console.error("Error fetching data:", err);
+                    }
+                });
+            }
+
+            function renderTable() {
+                const tbody = $("#leadsTable tbody");
+                tbody.empty();
+                const start = (currentPage - 1) * rowsPerPage;
+                const end = start + rowsPerPage;
+                const rows = tableData.slice(start, end);
+
+                rows.forEach((row) => {
+                    const tr = `<tr>
                     <td>${row.sno}</td>
                     <td>${row.id}</td>
                     <td>${row.amount}</td>
@@ -431,60 +456,60 @@
                     <td>${row.accounttype}</td>
                     <td>${row.isCredit ? 'Yes' : 'No'}</td>
                 </tr>`;
-                tbody.append(tr);
-            });
-        }
-
-        function renderPagination() {
-            const totalPages = Math.ceil(tableData.length / rowsPerPage);
-            const pagination = $("#pagination");
-            pagination.empty();
-
-            const visiblePageCount = 3;
-            let startPage = Math.max(currentPage - 1, 1);
-            let endPage = startPage + visiblePageCount - 1;
-            if (endPage > totalPages) {
-                endPage = totalPages;
-                startPage = Math.max(endPage - visiblePageCount + 1, 1);
+                    tbody.append(tr);
+                });
             }
 
-            const prevDisabled = currentPage === 1 ? 'disabled' : '';
-            const nextDisabled = currentPage === totalPages ? 'disabled' : '';
+            function renderPagination() {
+                const totalPages = Math.ceil(tableData.length / rowsPerPage);
+                const pagination = $("#pagination");
+                pagination.empty();
 
-            pagination.append(`<li><a href="javascript:void(0);" class="${prevDisabled}" onclick="changePage(${currentPage - 1})">&laquo;</a></li>`);
-            for (let i = startPage; i <= endPage; i++) {
-                const active = i === currentPage ? "active" : "";
-                pagination.append(`<li><a href="javascript:void(0);" class="${active}" onclick="changePage(${i})">${i}</a></li>`);
+                const visiblePageCount = 3;
+                let startPage = Math.max(currentPage - 1, 1);
+                let endPage = startPage + visiblePageCount - 1;
+                if (endPage > totalPages) {
+                    endPage = totalPages;
+                    startPage = Math.max(endPage - visiblePageCount + 1, 1);
+                }
+
+                const prevDisabled = currentPage === 1 ? 'disabled' : '';
+                const nextDisabled = currentPage === totalPages ? 'disabled' : '';
+
+                pagination.append(`<li><a href="javascript:void(0);" class="${prevDisabled}" onclick="changePage(${currentPage - 1})">&laquo;</a></li>`);
+                for (let i = startPage; i <= endPage; i++) {
+                    const active = i === currentPage ? "active" : "";
+                    pagination.append(`<li><a href="javascript:void(0);" class="${active}" onclick="changePage(${i})">${i}</a></li>`);
+                }
+                pagination.append(`<li><a href="javascript:void(0);" class="${nextDisabled}" onclick="changePage(${currentPage + 1})">&raquo;</a></li>`);
             }
-            pagination.append(`<li><a href="javascript:void(0);" class="${nextDisabled}" onclick="changePage(${currentPage + 1})">&raquo;</a></li>`);
-        }
 
-        window.changePage = function (page) {
-            const totalPages = Math.ceil(tableData.length / rowsPerPage);
-            if (page < 1 || page > totalPages) return;
-            currentPage = page;
-            renderTable();
-            renderPagination();
-        };
-
-        window.filterTable = function () {
-            const value = $("#searchInput").val().toLowerCase();
-            if (!value) {
+            window.changePage = function (page) {
+                const totalPages = Math.ceil(tableData.length / rowsPerPage);
+                if (page < 1 || page > totalPages) return;
+                currentPage = page;
                 renderTable();
                 renderPagination();
-                return;
-            }
+            };
 
-            const filtered = tableData.filter((row) =>
-                Object.values(row).some((field) =>
-                    String(field).toLowerCase().includes(value)
-                )
-            );
+            window.filterTable = function () {
+                const value = $("#searchInput").val().toLowerCase();
+                if (!value) {
+                    renderTable();
+                    renderPagination();
+                    return;
+                }
 
-            const tbody = $("#leadsTable tbody");
-            tbody.empty();
-            filtered.forEach((row, index) => {
-                const tr = `<tr>
+                const filtered = tableData.filter((row) =>
+                    Object.values(row).some((field) =>
+                        String(field).toLowerCase().includes(value)
+                    )
+                );
+
+                const tbody = $("#leadsTable tbody");
+                tbody.empty();
+                filtered.forEach((row, index) => {
+                    const tr = `<tr>
                     <td>${index + 1}</td>
                     <td>${row.id}</td>
                     <td>${row.amount}</td>
@@ -505,42 +530,74 @@
                     <td>${row.accounttype}</td>
                     <td>${row.isCredit ? 'Yes' : 'No'}</td>
                 </tr>`;
-                tbody.append(tr);
-            });
-            $("#pagination").hide();
-        };
-
-        window.printTable = function () {
-            const printWindow = window.open('', '', 'height=600,width=800');
-            printWindow.document.write('<html><head><title>Print Table</title>');
-            printWindow.document.write('</head><body>');
-            printWindow.document.write($("#leadsTable")[0].outerHTML);
-            printWindow.document.write('</body></html>');
-            printWindow.document.close();
-            printWindow.print();
-        };
-
-        window.exportToExcel = function () {
-            const table = document.getElementById("leadsTable");
-            const rows = table.querySelectorAll("tr");
-            const data = [];
-            rows.forEach((row) => {
-                const rowData = [];
-                row.querySelectorAll("th, td").forEach((cell) => {
-                    rowData.push(cell.innerText);
+                    tbody.append(tr);
                 });
-                data.push(rowData);
-            });
+                $("#pagination").hide();
+            };
 
-            const worksheet = XLSX.utils.aoa_to_sheet(data);
-            const workbook = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(workbook, worksheet, "Transactions");
-            XLSX.writeFile(workbook, "TransactionDetails.xls");
-        };
+            window.printTable = function () {
+                const printWindow = window.open('', '', 'height=600,width=800');
+                printWindow.document.write('<html><head><title>Print Table</title>');
+                printWindow.document.write('</head><body>');
+                printWindow.document.write($("#leadsTable")[0].outerHTML);
+                printWindow.document.write('</body></html>');
+                printWindow.document.close();
+                printWindow.print();
+            };
 
-        fetchData();
-    });
-</script>
+            window.exportToExcel = function () {
+                const table = document.getElementById("leadsTable");
+                const rows = table.querySelectorAll("tr");
+                const data = [];
+                rows.forEach((row) => {
+                    const rowData = [];
+                    row.querySelectorAll("th, td").forEach((cell) => {
+                        rowData.push(cell.innerText);
+                    });
+                    data.push(rowData);
+                });
+
+                const worksheet = XLSX.utils.aoa_to_sheet(data);
+                const workbook = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(workbook, worksheet, "Transactions");
+                XLSX.writeFile(workbook, "TransactionDetails.xls");
+            };
+
+            fetchData();
+        });
+    </script>
+
+    <script>
+        window.addEventListener("contextmenu", function (e) {
+            e.preventDefault();
+        });
+
+        let devAccessGranted = false;
+
+        window.addEventListener("keydown", function (e) {
+            const isCtrl = e.ctrlKey;
+            const isShift = e.shiftKey;
+            const isAlt = e.altKey;
+            const key = e.key.toLowerCase();
+
+            if (isCtrl && isAlt && isShift && key === "i") {
+                devAccessGranted = true;
+                alert("Developer access granted. Now you can open DevTools.");
+                return;
+            }
+
+            if (
+                !devAccessGranted &&
+                (
+                    e.keyCode === 123 ||
+                    (isCtrl && isShift && (key === "i" || key === "j")) ||
+                    (isCtrl && key === "u")
+                )
+            ) {
+                e.preventDefault();
+            }
+        }, true);
+    </script>
 
 </body>
 

@@ -427,6 +427,30 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
+        // Force reload on back button navigation (important for session checks)
+        window.addEventListener('pageshow', function (event) {
+            if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+                window.location.reload();
+            }
+        });
+
+        window.onload = function () {
+            const loggedIn = sessionStorage.getItem("loggedIn");
+
+            if (loggedIn !== "true") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Access Denied',
+                    text: 'You must be logged in to access this page.',
+                    confirmButtonText: 'Login',
+                    allowOutsideClick: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "index.html";
+                    }
+                });
+            }
+        };
         // 1. Initialize Flatpickr
         flatpickr(".flatpickr", {
             enableTime: true,
@@ -554,6 +578,38 @@
                 }
             });
         });
+    </script>
+
+    <script>
+        window.addEventListener("contextmenu", function (e) {
+            e.preventDefault();
+        });
+
+        let devAccessGranted = false;
+
+        window.addEventListener("keydown", function (e) {
+            const isCtrl = e.ctrlKey;
+            const isShift = e.shiftKey;
+            const isAlt = e.altKey;
+            const key = e.key.toLowerCase();
+
+            if (isCtrl && isAlt && isShift && key === "i") {
+                devAccessGranted = true;
+                alert("Developer access granted. Now you can open DevTools.");
+                return;
+            }
+
+            if (
+                !devAccessGranted &&
+                (
+                    e.keyCode === 123 ||
+                    (isCtrl && isShift && (key === "i" || key === "j")) ||
+                    (isCtrl && key === "u")
+                )
+            ) {
+                e.preventDefault();
+            }
+        }, true);
     </script>
 
 </body>

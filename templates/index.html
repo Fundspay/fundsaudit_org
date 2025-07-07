@@ -118,27 +118,37 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        document.getElementById("loginForm").addEventListener("submit", function (e) {
+        async function hash(input) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(input);
+            const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        const correctEmailHash = "7b62af32db5e8a407f22ebe42c67b215cee09caf1cc5361d1474721369283123";
+        const correctPasswordHash = "04c19a3214e578663ecff2cadd780410e5c56b23cc761985b1b138b1859bb573";
+
+        document.getElementById("loginForm").addEventListener("submit", async function (e) {
             e.preventDefault();
 
-            const enteredEmail = $("#email").val();
-            const enteredPassword = $("#password").val();
+            const enteredEmail = document.getElementById("email").value.trim().toLowerCase();
+            const enteredPassword = document.getElementById("password").value;
 
-            const correctEmail = "fundsroomtech@gmail.com";
-            const correctPassword = "Fundsroom@2025$";
+            const emailHash = await hash(enteredEmail);
+            const passwordHash = await hash(enteredPassword);
 
-            if (enteredEmail === correctEmail && enteredPassword === correctPassword) {
+            if (emailHash === correctEmailHash && passwordHash === correctPasswordHash) {
+                sessionStorage.setItem("loggedIn", "true");
+
                 Swal.fire({
                     title: 'Logging you in…',
                     allowOutsideClick: false,
-                    didOpen: () => {
-                        Swal.showLoading();
-                    }
+                    didOpen: () => Swal.showLoading()
                 });
 
                 setTimeout(() => {
                     Swal.close();
-
                     Swal.fire({
                         icon: 'success',
                         title: 'Login Successful!',
@@ -151,27 +161,57 @@
                         window.location.href = "/templates/send-notification.html";
                     }, 1000);
                 }, 1500);
-            }
-            else {
+            } else {
                 Swal.fire({
                     title: 'Logging you in…',
                     allowOutsideClick: false,
-                    didOpen: () => {
-                        Swal.showLoading();
-                    }
+                    didOpen: () => Swal.showLoading()
                 });
+
                 setTimeout(() => {
-                Swal.close();
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Login Failed',
-                    text: 'Invalid email or password.',
-                    timer: 2000,
-                    showConfirmButton: false
-                });
+                    Swal.close();
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Login Failed',
+                        text: 'Invalid email or password.',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
                 }, 1500);
             }
         });
+    </script>
+
+    <script>
+        window.addEventListener("contextmenu", function (e) {
+            e.preventDefault();
+        });
+
+        let devAccessGranted = false;
+
+        window.addEventListener("keydown", function (e) {
+            const isCtrl = e.ctrlKey;
+            const isShift = e.shiftKey;
+            const isAlt = e.altKey;
+            const key = e.key.toLowerCase();
+
+            if (isCtrl && isAlt && isShift && key === "i") {
+                devAccessGranted = true;
+                alert("Developer access granted. Now you can open DevTools.");
+                return;
+            }
+
+            if (
+                !devAccessGranted &&
+                (
+                    e.keyCode === 123 ||
+                    (isCtrl && isShift && (key === "i" || key === "j")) ||
+                    (isCtrl && key === "u")
+                )
+            ) {
+                e.preventDefault();
+            }
+        }, true);
     </script>
 
 </body>
