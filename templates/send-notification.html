@@ -339,6 +339,14 @@
                                     </div>
                                 </div>
 
+                                <div class="col-lg-12 mb-4">
+                                    <label class="form-label">Audience <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="userType" data-select2-selector="icon">
+                                        <option value="test" selected>Tester</option>
+                                        <option value="all">Users</option>
+                                    </select>
+                                </div>
+
                                 <div class="row">
                                     <div class="col-lg-6 mb-4">
                                         <label class="form-label">From (Data start duration)<span
@@ -517,6 +525,7 @@
 
             const fromInput = $('#fromDateTime').val();
             const toInput = $('#toDateTime').val();
+            const userType = $('#userType').val();
 
             if (!fromInput || !toInput || !part1 || !part5 || !part3 || !part7 || !type || !screen) {
                 alert("⚠️ Please fill all fields.");
@@ -537,6 +546,7 @@
             const payload = {
                 body: message,
                 type: type,
+                audience: userType,
                 from: fromTimestamp,
                 to: toTimestamp,
                 screen: screen
