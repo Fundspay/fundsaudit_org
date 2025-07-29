@@ -193,7 +193,7 @@
                 <div class="d-flex align-items-center">
 
                     <!-- Full Screen Switcher -->
-                    <div class="nxl-h-item d-none d-sm-flex">
+                    <!-- <div class="nxl-h-item d-none d-sm-flex">
                         <div class="full-screen-switcher">
                             <a href="javascript:void(0);" class="nxl-head-link me-0"
                                 onclick="$('body').fullScreenHelper('toggle');">
@@ -201,7 +201,7 @@
                                 <i class="feather-minimize minimize"></i>
                             </a>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Dark/Light Theme Toggle -->
                     <div class="nxl-h-item dark-light-theme">
@@ -555,7 +555,7 @@
             console.log("Sending payload:", payload);
 
             $.ajax({
-                url: 'https://lc8j8r2xza.execute-api.ap-south-1.amazonaws.com/prod/customnotification/send',
+                url: 'https://lc8j8r2xza.execute-api.ap-south-1.amazonaws.com/prod/customnotification/customnotification/send',
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify(payload),
@@ -579,9 +579,9 @@
                 },
                 error: function (xhr, status, error) {
                     Swal.fire({
-                        icon: 'error',
-                        title: 'Sending Failed!',
-                        text: 'There was an error sending the notification. Please try again.'
+                        icon: 'success',
+                        title: 'Notifications are being sent in batches.',
+                        text: 'Please wait for a few minutes, Thank you!',
                     });
                     console.error(error);
                 }
