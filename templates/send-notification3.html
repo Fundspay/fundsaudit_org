@@ -543,15 +543,32 @@
                 return;
             }
 
-            const payload = {
-                body: message,
-                type: type,
-                audience: userType,
-                from: fromTimestamp,
-                to: toTimestamp,
-                screen: screen
-            };
-
+            let payload;
+            if (userType === "test") {
+                payload = {
+                    body: message,
+                    type: type,
+                    audience: "custom",
+                    from: fromTimestamp,
+                    to: toTimestamp,
+                    screen: screen,
+                    userIds: [
+                        "vQCcQCxOBpaqLeUj4HQv9ARKdvB2",
+                        "qM8Y0GRQcQX5Yo4TvzOyDrS766Q2",
+                        "cRkUVBaeqIcdITHz3Bt4D4fOFIk1"
+                    ]
+                };
+            }
+            else {
+                payload = {
+                    body: message,
+                    type: type,
+                    audience: "all",
+                    from: fromTimestamp,
+                    to: toTimestamp,
+                    screen: screen
+                };
+            }
             console.log("Sending payload:", payload);
 
             $.ajax({
